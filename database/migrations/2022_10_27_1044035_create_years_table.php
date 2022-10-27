@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('years', function (Blueprint $table) {
             $table->id();
             $table->string('year');
+            $table->unsignedBigInteger('car_id');
             $table->timestamps();
+        });
+
+        Schema::table('years', function($table) {
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
         });
     }
 

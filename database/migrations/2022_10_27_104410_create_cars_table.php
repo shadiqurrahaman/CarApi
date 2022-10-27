@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('make');
             $table->string('model');
-            $table->unsignedBigInteger('year_id');
-            $table->foreign('year_id')->references('id')->on('years')->onDelete('cascade');
             $table->timestamps();
         });
     }
