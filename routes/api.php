@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('hello',function(){
-    return response()->json(['message'=>'hello CarApi']);
+// Route::get('hello',function(){
+//     return response()->json(['message'=>'hello CarApi']);
+// });
+
+Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
+
+    Route::post('cars','CarshopController@savecar');
+
+
 });
