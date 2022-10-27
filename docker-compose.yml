@@ -11,6 +11,9 @@ services:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
     working_dir: /var/www/html/
+    volumes:
+      - ./:/var/www/html/
+      - ./php/laravel.ini:/usr/local/etc/php/conf.d/laravel.ini
     networks:
       - app-network
 
@@ -34,10 +37,13 @@ services:
     ports:
       - 3333:3306
     environment:
-      MYSQL_DATABASE: laravel_web
+      MYSQL_DATABASE: laravel
       MYSQL_ROOT_PASSWORD: root123
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
 
@@ -52,3 +58,7 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
