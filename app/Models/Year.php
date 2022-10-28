@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Year extends Model
 {
     use HasFactory;
-
-    public functio car()
+    protected $guarded = [];
+    public function car()
     {
          return $this->belongsTo(Car::class);
     }

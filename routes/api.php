@@ -26,6 +26,9 @@ Route::get('hello',function(){
 Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
 
     Route::post('cars','CarshopController@savecar');
+    Route::get('cars/{id}','CarshopController@getcar');
+    Route::post('cars/{id}/years','CarshopController@addyear');
+    Route::get('cars','CarshopController@carbyyear');
 
 
 });

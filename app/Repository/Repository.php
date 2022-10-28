@@ -12,7 +12,7 @@ class Repository implements RepoInterface{
 
     public function create($data)
     {
-        $model = $this->model->create($data);
+        $model = $this->model->updateOrCreate($data);
         return $model;
     }
 
