@@ -25,7 +25,7 @@ class CarshopController extends Controller
     }
 
     public function getcar($id)
-    {
+    {   
         return $this->carRepository->getcar($id);
     }
 
@@ -37,14 +37,10 @@ class CarshopController extends Controller
 
     public function carbyyear(Request $request)
     {
-        //make year repository
-        //select all car id from years
-        //select all this id from car table 
-        //save them in redis because this is an expensive query
-        
+                
         $years = explode(",",$request->years);
 
-        return $years;
+        return $this->carRepository->carbyyear($years);
     }
 
 }

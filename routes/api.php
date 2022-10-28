@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Redis;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,13 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::get('hello',function(){
-    return response()->json(['message'=>'hello CarApi']);
-});
 
 
 Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
@@ -29,6 +22,15 @@ Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
     Route::get('cars/{id}','CarshopController@getcar');
     Route::post('cars/{id}/years','CarshopController@addyear');
     Route::get('cars','CarshopController@carbyyear');
-
+    Route::get('redis',function(){
+        Redis::set('ping','this is radis gello world');
+    });
+    Route::get('redisping',function(){
+        if(Redis::get('ping2')){
+            return "ok";
+        }else{
+            return "not ok";
+        }
+    });
 
 });
