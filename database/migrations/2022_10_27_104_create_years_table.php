@@ -17,12 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('year');
             $table->unsignedBigInteger('car_id');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->timestamps();
         });
 
-        Schema::table('years', function($table) {
-            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
-        });
     }
 
     /**
