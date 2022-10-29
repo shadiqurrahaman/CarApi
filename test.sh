@@ -1,5 +1,7 @@
 #!/bin/sh
 
+	
+sudo docker run --rm -v $(pwd):/app composer install
 
 sudo chown -R $USER:$USER ~/.
 
