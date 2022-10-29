@@ -9,6 +9,7 @@ class Car extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public $timestamps = false;
     public function year()
     {
         return $this->hasMany(Year::class);

@@ -3,6 +3,7 @@ namespace App\Repository;
 use App\Models\Car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Carbon as carbon;
 
 class CarRepository extends Repository
 {   

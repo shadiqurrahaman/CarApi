@@ -9,6 +9,7 @@ class Year extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public $timestamps = false;
     public function car()
     {
          return $this->belongsTo(Car::class);
