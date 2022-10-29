@@ -13,7 +13,7 @@ class CarshopController extends Controller
 
     public function __construct(CarRepository $carRepository)
     {
-        $this->carRepository = $carRepository;   
+        $this->carRepository = $carRepository;
     }
 
     public function savecar(Car $car)
@@ -21,7 +21,7 @@ class CarshopController extends Controller
         $newcar['make'] = $car->make;
         $newcar['model'] = $car->model;
         $data = $this->carRepository->create($newcar);
-        return response()->json(['data'=>$data],200);
+        return response()->json(['id'=>$data->id],201);
     }
 
     public function getcar($id)
@@ -30,8 +30,12 @@ class CarshopController extends Controller
     }
 
     public function addyear(Request $request,$id)
-    {
-        return $this->carRepository->addyear($id,$request->years);
+    {   
+        if (!$id) {
+            return response()->json(['message'=>"Invalid id"],400);
+        }
+        
+        return $this->carRepository->addyear($id,$request);
 
     }
 

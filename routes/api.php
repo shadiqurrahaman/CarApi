@@ -22,15 +22,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
     Route::get('cars/{id}','CarshopController@getcar');
     Route::post('cars/{id}/years','CarshopController@addyear');
     Route::get('cars','CarshopController@carbyyear');
-    Route::get('redis',function(){
-        Redis::set('ping','this is radis gello world');
-    });
-    Route::get('redisping',function(){
-        if(Redis::get('ping2')){
-            return "ok";
-        }else{
-            return "not ok";
-        }
-    });
-
+   
 });
