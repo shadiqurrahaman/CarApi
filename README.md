@@ -1,4 +1,4 @@
-<p align="center">CarApi</p>
+<h1 align="center">CarApi</h1>
 
 ## Tools and Technology
 
@@ -33,3 +33,10 @@ Finaly run the bash file
 sudo ./test.sh
 
 ```
+
+## Sample output
+
+![Output1](screenshots/s1.png)
+![Output2](screenshots/s2.png)
+![Output3](screenshots/s3.png)
+![Output4](screenshots/s4.png)
