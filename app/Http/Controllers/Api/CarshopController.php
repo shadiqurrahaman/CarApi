@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Car;
 use App\Repository\CarRepository;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
 class CarshopController extends Controller
@@ -20,13 +21,26 @@ class CarshopController extends Controller
     {   
         $newcar['make'] = $car->make;
         $newcar['model'] = $car->model;
-        $data = $this->carRepository->create($newcar);
-        return response()->json(['id'=>$data->id],201);
+        try{
+
+            $data = $this->carRepository->create($newcar);
+            return response()->json(['id'=>$data->id],201);
+
+        }catch(RequestException $exception){
+
+            return response()->bad_request($exception->getMessage());
+        }
     }
 
     public function getcar($id)
-    {   
-        return $this->carRepository->getcar($id);
+    {   try{
+
+            return $this->carRepository->getcar($id);
+
+        }catch(RequestException $exception){
+
+            return response()->bad_request($exception->getMessage());
+        }
     }
 
     public function addyear(Request $request,$id)
@@ -34,8 +48,14 @@ class CarshopController extends Controller
         if (!$id) {
             return response()->json(['message'=>"Invalid id"],400);
         }
-        
-        return $this->carRepository->addyear($id,$request);
+
+        try{
+
+            return $this->carRepository->addyear($id,$request);
+        }catch(RequestException $exception){
+
+            return response()->bad_request($exception->getMessage());
+        }
 
     }
 
@@ -43,8 +63,15 @@ class CarshopController extends Controller
     {
                 
         $years = explode(",",$request->years);
+        
+        try{
 
-        return $this->carRepository->carbyyear($years);
+            return $this->carRepository->carbyyear($years);
+        }catch(RequestException $exception){
+
+            return response()->bad_request($exception->getMessage());
+        }
+
     }
 
 }
